@@ -1,0 +1,41 @@
+<div class="container">
+  <h3 class="text-center mt-5 mb-5">Astronomy Picture of the Day from Feb 19 2022 to May 29 2022</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Explanation</th>
+        <th>Image Url</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let post of datos
+            | paginate
+              : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index
+        "
+      >
+        <th scope="row">{{ post.title }}</th>
+        <td>{{ post.explanation }}</td>
+        <td><img width="200px" height="200px" src='{{post.url}}' /><br>
+         
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
+  </div>
+</div>
+
+
